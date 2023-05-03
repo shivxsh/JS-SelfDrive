@@ -19,6 +19,6 @@ function animate(){
     
     car.draw(ctx);
 //requestAnimationFrame calls the "animate()" method many times per second.
-//This gives the illusion of movement that we need
+//This gives the illusion of movement.
     requestAnimationFrame(animate)
 }
