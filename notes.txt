@@ -1,0 +1,29 @@
+1) Build the road like initial structure by using the canvas in html and aligning it to the center with width 200
+
+2) Create a new "Car"  class in car.js (steps explained in that file.)
+   Call that car object from main.js
+   ctx stores the context of the canvas, which will be the parameter taken by the "draw()" method
+
+3) Movement of the car : 
+    create a controls.js file.
+    make a new class called controls with a constructor
+
+4) Inside the controls file, we used a private method called keyboard listener.
+   Inside this method, we used "onkeydown" and "onkeyup" methods to check if the key is pressed or is it released.
+   While it is pressed, we set the respective key values declared inside of the constructor as true. (By default we declared it as false)
+
+5) The Y-axis  increases as it goes down on a computer.
+   Hence, to show these changes on the screen, we move the canvas y-2 times for the card to move forward and
+   y+2 times for it to move down.
+   //This is the initial plan. Before implementing the speed and acceleration and stopping mechanisms.
+
+6) To make this work, we use an "animate()" function in main.js
+   It basically uses the "requestAnimationFrame()" method that repeatedly calls the animate method.
+   This method calls the update() method and draw(context) method.
+
+7) Now, we need to make the car move with a certain speed and acceleration. Also introduce friction to stop the car.
+   Instead of doing Y-2 and Y+2 in step-5; We can now add acceleration with speed and subtract it for moving forward and backward.
+
+    For the left and right movement, we need to "rotate" the car. For that, we introduce a variable called "angle"
+    For every left and right key press, we use the translate() method to rotate the car 0.03 degrees anticlockwise.
+
