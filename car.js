@@ -57,11 +57,11 @@ class Car{
         //Moving left and right :
         if(this.controls.left){
             // this.x-=2;
-            this.angle+=0.03;
+            this.angle-=0.03;
         }
         if(this.controls.right){
             // this.x+=2;
-            this.angle-=0.03;
+            this.angle+=0.03;
         }
         this.y-=this.speed;
     }
@@ -71,14 +71,14 @@ class Car{
         
         //To rotate the car :
         ctx.save(); //save the context first
-        ctx.translate(this.x,this.y);
-        ctx.rotate(-this.angle);
+        ctx.translate(this.x,this.y); //translate() - Moves the canvas from the original position to the new x and y position
+        ctx.rotate(this.angle); //Rotates the car left or right 
 
         ctx.beginPath();
         ctx.rect(
         //x = center of the car. It will have parts in front, left, right and to the bottom of it.    
-            - this.width/2,  
-            - this.height/2,
+            -this.width/2, //This will subtract the height and width from the translated position.
+            -this.height/2, //This will subtract the height and width from the translated position.
             this.width,
             this.height
         );
@@ -86,6 +86,4 @@ class Car{
 
         ctx.restore();  //restore the context. Otherwise it will infinitely translate the x and y axis.
     }
-
-
 }
