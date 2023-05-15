@@ -19,7 +19,11 @@ class Car{
 
     //On the detection of a key in controls.js, we need to move the car
     update() {
+        this.#move();
+    }
 
+    #move(){
+        
         if(this.controls.forward){
             //In a computer, the y axis increases downward.
             // this.y-=2;  
@@ -55,17 +59,26 @@ class Car{
 
 
         //Moving left and right :
-        if(this.controls.left){
-            // this.x-=2;
-            this.angle-=0.03;
+        if(this.speed!=0){
+//We find if the car is going forward or reverse and store the value 1 or -1 accordingly.
+            const flip = this.speed>0 ? 1 : -1;
+            if(this.controls.left){
+                // this.x-=2;
+                this.angle += 0.03 * flip; //Inverts the right and left key for reverse. (angle * -1)
+            }
+            if(this.controls.right){
+                // this.x+=2;
+                this.angle -= 0.03 * flip;
+            }
         }
-        if(this.controls.right){
-            // this.x+=2;
-            this.angle+=0.03;
-        }
-        this.y-=this.speed;
-
         
+        //this.y-=this.speed;
+        
+//https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:trig/x2ec2f6f830c9fb89:unit-circle/v/unit-circle-definition-of-trig-functions-1
+//Visit this link to know about sin and cos in a unit circle for rotations. Same is applied here.
+
+        this.x -= Math.sin(this.angle) * this.speed;
+        this.y -= Math.cos(this.angle) * this.speed;
     }
     
     //draw() method gets a "context" as its parameter
@@ -74,13 +87,13 @@ class Car{
         //To rotate the car :
         ctx.save(); //save the context first
         ctx.translate(this.x,this.y); //translate() - Moves the canvas from the original position to the new x and y position
-        ctx.rotate(this.angle); //Rotates the car left or right 
+        ctx.rotate(-this.angle); //Rotates the car left or right 
 
         ctx.beginPath();
         ctx.rect(
         //x = center of the car. It will have parts in front, left, right and to the bottom of it.    
-            -this.width/2, //This will subtract the height and width from the translated position.
-            -this.height/2, //This will subtract the height and width from the translated position.
+            - this.width/2, //This will subtract the height and width from the translated position.
+            - this.height/2, //This will subtract the height and width from the translated position.
             this.width,
             this.height
         );

@@ -32,7 +32,7 @@ class Controls{
                     break;
             }
         //For debugging : to check if the key presses work    
-            console.table(this);
+            // console.table(this);
         }
 
     //onkeyup = as long as the key is released
@@ -52,7 +52,7 @@ class Controls{
                     break;
             }
             //For debugging : to check if the key presses work
-            console.table(this);
+            // console.table(this);
         }
         
     }

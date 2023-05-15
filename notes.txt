@@ -27,3 +27,16 @@
     For the left and right movement, we need to "rotate" the car. For that, we introduce a variable called "angle"
     For every left and right key press, we use the translate() method to rotate the car 0.03 degrees anticlockwise.
 
+8) Now, we move the car left and right based on sin and cos angles respectively. sin function for the x axis and cos for y axis.
+   Since the entire idea of the car is based on a unit circle, we have used the sin and cos functions for rotating the car in left and right directions.
+   Inorder to have the reverse direction work in the same exact way and not get inverted, we introduce a "flip" variable that basically gets assigned the value
+   of -1 if car is going in reverse else it is 1. Now when it is -1, the left and right rotation angles are multiplied by flip so that the direction is inverted and 
+   hence now, the car moves in the correct direction.
+
+// Defining the road:
+9) moveTo() method moves the canvas to a specified point.
+   lineTo() adds a point to which the canvas can draw a line to FROM the last point.
+   Note that, both of these above functions do NOT draw a line. Hence we use a "stroke()" function to draw a line.
+
+   Our Road class inside road.js takes a constructor with the parameters : "x coordinate", "Width", and "laneCount" which is set to 3 by default
+   
