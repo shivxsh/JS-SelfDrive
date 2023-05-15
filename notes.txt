@@ -40,3 +40,16 @@
 
    Our Road class inside road.js takes a constructor with the parameters : "x coordinate", "Width", and "laneCount" which is set to 3 by default
    
+10) We use the LERP (linear interpollation) function to get the distance between the initial and next position of the object.
+    function lerp(A,B,t) => { return A + (B-A)*t}, where t is the value between 0 and 1 got from the loop of i=0 and i<= laneCount where t = i/laneCount;
+
+11) To add the dashed lines on the road we use the .setLineDash([param-1, param-2]); where param-1 will be the size of the line and param-2 will be the break between 2 lines.
+
+12) Next, we need to find the center of the car for a given set of lanes.
+    For this, we define a " function getLaneCenter(laneIndex) " that will get the lane index (numbering of lanes starting from 0) as an argument and return the 
+    return the center of the particular lane. Hence the car will always start at the center of the specified lane.
+
+13) Now, to make sure our car doesnt go off the side and make our road side margins stop the car from moving outside,  we add a field in our road constructor  "borders[]"
+    which takes in a set of segments (topLeft, bottomLeft, topRight, bottomRight). where x:this.left/this.right and y:this.top/this.bottom
+
+14) To pin the camera view on the car, we use " ctx.translate(0,-car.y + canvas.height*0.8); "  in the main.js file such that it feels like the road is moving infinitely.
