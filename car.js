@@ -64,6 +64,8 @@ class Car{
             this.angle+=0.03;
         }
         this.y-=this.speed;
+
+        
     }
     
     //draw() method gets a "context" as its parameter
