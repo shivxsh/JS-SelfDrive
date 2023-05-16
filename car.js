@@ -20,9 +20,9 @@ class Car{
     }
 
     //On the detection of a key in controls.js, we need to move the car
-    update() {
+    update(roadBorders) {
         this.#move();
-        this.sensor.update();
+        this.sensor.update(roadBorders);
     }
 
     #move(){

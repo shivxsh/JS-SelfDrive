@@ -60,4 +60,12 @@
 16) Note that we use a unit circle rotated to the left for refernce of the sin and cos angles. Hence the sensor rays move in a sin angle in x axis and cosine angle in the y axis.
     This is done using the const start and end variables inside the sensor.js file.
 
-17)
+17)Now, inorder to move our sensors along with the car, we add the "this.car.angle" along with the lerp function of the rays inside sensors.js such that whenever the car moves, the rays
+   also move along with it. 360 degrees rays? sure, use " Math.PI * 2 ". But this depends on your preference.
+
+18) Now we need to check whether our sensors detect something. For this, we declare an array called readings inside which we push the rays and roadBorders by using a custom function called 
+    "getReading(rays,roadBorders)". The idea is to simulate the touches of the rays to a border and push the "closest" touch inside the readings array. 
+    i.e. consider a single ray passing from the car, hence now if the car is turning left and it detects another car approaching from the other side, then the ray will detect two things in its path :
+    1) is the other car that is approaching and 2) is the road border that is beyond the car. Now the closest object to the ray is the car and hence it will push the touch of the car inside the reading array.
+
+19) 
