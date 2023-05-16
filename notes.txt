@@ -53,3 +53,7 @@
     which takes in a set of segments (topLeft, bottomLeft, topRight, bottomRight). where x:this.left/this.right and y:this.top/this.bottom
 
 14) To pin the camera view on the car, we use " ctx.translate(0,-car.y + canvas.height*0.8); "  in the main.js file such that it feels like the road is moving infinitely.
+
+//Now to add the sensors : 
+15) We use rays with ray length = 100px, ray spread = pi/4 or 45 deg and rayLines = 3 (initially set to 3)
+16) //53:06
