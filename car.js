@@ -14,12 +14,15 @@ class Car{
 //angle - to move the car left and right in a particular angle
         this.angle=0;
 
+        this.sensor = new Sensor(this);  //We pass the car object to this sensor constructor. Hence we use "this"
+
         this.controls = new Controls();
     }
 
     //On the detection of a key in controls.js, we need to move the car
     update() {
         this.#move();
+        this.sensor.update();
     }
 
     #move(){
@@ -100,5 +103,7 @@ class Car{
         ctx.fill();
 
         ctx.restore();  //restore the context. Otherwise it will infinitely translate the x and y axis.
+
+        this.sensor.draw(ctx); //The car now has the ability to draw its own sensors.
     }
 }

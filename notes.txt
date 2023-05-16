@@ -56,4 +56,8 @@
 
 //Now to add the sensors : 
 15) We use rays with ray length = 100px, ray spread = pi/4 or 45 deg and rayLines = 3 (initially set to 3)
-16) //53:06
+
+16) Note that we use a unit circle rotated to the left for refernce of the sin and cos angles. Hence the sensor rays move in a sin angle in x axis and cosine angle in the y axis.
+    This is done using the const start and end variables inside the sensor.js file.
+
+17)
