@@ -25,6 +25,12 @@ class Car{
         this.sensor.update(roadBorders);
     }
 
+    //To detect collisions:
+    #createPolygon(){
+        const points=[];
+        const rad = Math.hypot(this.height,this.width)/2; //(inside the car's rectangle from the center point : we have a right triangle whose distance to the 4 corners from the center is just the hypotenuse of the right triangle.)
+    }
+
     #move(){
         
         if(this.controls.forward){

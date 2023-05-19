@@ -66,6 +66,15 @@
 18) Now we need to check whether our sensors detect something. For this, we declare an array called readings inside which we push the rays and roadBorders by using a custom function called 
     "getReading(rays,roadBorders)". The idea is to simulate the touches of the rays to a border and push the "closest" touch inside the readings array. 
     i.e. consider a single ray passing from the car, hence now if the car is turning left and it detects another car approaching from the other side, then the ray will detect two things in its path :
-    1) is the other car that is approaching and 2) is the road border that is beyond the car. Now the closest object to the ray is the car and hence it will push the touch of the car inside the reading array.
+    #1 is the other car that is approaching 
+    #2 the road border that is beyond the car. Now the closest object to the ray is the car and hence it will push the touch of the car inside the reading array.
 
-19) The getIntersection() method : takes 4 points (A,B,C,D). Where AB is a line segment and CD is a line segment. 
+19) The getIntersection() method : takes 4 points (A,B,C,D). Where AB and CD are two line segments. The tTop and uTop are the numerators and bottom is the denominator. The t and u are the parameters that decide 
+    if there is an intersection in the line segments. Consider the line segment as A and A+r ; C and C+s. Then a point on these line segments will be at A+tr or at C+us, where t and u are some scalars.
+    The code checkes if the bottom is 0 (i.e. if denominator is zero. If numerator != 0 denominator = 0, then line is parallel. No intersection.) Thus, if there is an intersection, and the points lie on the line segment,
+    the function returns 3 values : x,y and offset. where x is the lerp function of A and B's x coordinates and y is the lerp funciton of A and B's y coordinates. The offset is the distance between the car and the object.
+
+//Collision detection : 
+20) Inorder to simulate the damages suffered in our car, we need to somehow find the coordinates of the border of our car. For this, we go to car.js and define a function called "createPolygon". It takes in an array of points [].
+    One for each corner of the car. 
+    Inside the car's rectangle from the center point : we have a right triangle whose distance to the 4 corners from the center is just the hypotenuse of the right triangle.
