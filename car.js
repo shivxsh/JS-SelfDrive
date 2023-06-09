@@ -83,8 +83,7 @@ class Car{
         
         //this.y-=this.speed;
         
-//https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:trig/x2ec2f6f830c9fb89:unit-circle/v/unit-circle-definition-of-trig-functions-1
-//Visit this link to know about sin and cos in a unit circle for rotations. Same is applied here.
+
 
         this.x -= Math.sin(this.angle) * this.speed;
         this.y -= Math.cos(this.angle) * this.speed;
