@@ -14,6 +14,9 @@ class Car{
 //angle - to move the car left and right in a particular angle
         this.angle=0;
 
+//for the polygon method :
+        this.damaged = false;
+
         this.sensor = new Sensor(this);  //We pass the car object to this sensor constructor. Hence we use "this"
 
         this.controls = new Controls();
@@ -23,14 +26,24 @@ class Car{
     update(roadBorders) {
         this.#move();
         this.polygon = this.#createPolygon();
+        this.damaged = this.#assessDamage(roadBorders);
         this.sensor.update(roadBorders);
     }
 
-    //To detect collisions:
+    #assessDamage(roadBorders){
+        for(let i=0; i<roadBorders.length; i++){
+            if(polysIntersect(this.polygon, roadBorders[i])){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //To detect collisions: We find the corners of the car
     #createPolygon(){
         const points=[];
-        const rad = Math.hypot(this.height,this.width)/2; //(inside the car's rectangle from the center point : we have a right triangle whose distance to the 4 corners from the center is just the hypotenuse of the right triangle.)
-        const alpha = Math.atan2(this.height,this,width);
+        const rad = Math.hypot(this.width,this.height)/2; //(inside the car's rectangle from the center point : we have a right triangle whose distance to the 4 corners from the center is just the hypotenuse of the right triangle.)
+        const alpha = Math.atan2(this.width,this.height);
         points.push({
            x: this.x - Math.sin(this.angle - alpha)*rad,
            y: this.y - Math.cos(this.angle - alpha)*rad
@@ -47,7 +60,7 @@ class Car{
             x: this.x - Math.sin(Math.PI + this.angle + alpha)*rad,
             y: this.y - Math.cos(Math.PI + this.angle + alpha)*rad
         });
-
+        return points;
     }
 
     #move(){
@@ -65,7 +78,7 @@ class Car{
 
         //Speed for moving forward
         if(this.speed > this.maxSpeed){
-            this.speed = this.maxSpeed;
+            this.speed = this.maxSpeed*2;
         }
 
         //Speed for moving in reverse : hence '-' sign
@@ -111,7 +124,6 @@ class Car{
     
     //draw() method gets a "context" as its parameter
     draw(ctx){
-
         ctx.beginPath();
         ctx.moveTo(this.polygon[0].x, this.polygon[0].y);
         
@@ -119,9 +131,13 @@ class Car{
             ctx.lineTo(this.polygon[i].x, this.polygon[i].y);
         }
 
+        ctx.fill();
+
+        this.sensor.draw(ctx); //The car now has the ability to draw its own sensors.
+
         /*
         //Block of code before creating polygon method : 
-        
+
         //To rotate the car :
         ctx.save(); //save the context first
         ctx.translate(this.x,this.y); //translate() - Moves the canvas from the original position to the new x and y position
@@ -135,12 +151,11 @@ class Car{
             this.width,
             this.height
         );
-        */
-
+        
         ctx.fill();
-
         ctx.restore();  //restore the context. Otherwise it will infinitely translate the x and y axis.
 
-        this.sensor.draw(ctx); //The car now has the ability to draw its own sensors.
+        */
+
     }
 }
