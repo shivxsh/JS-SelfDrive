@@ -77,4 +77,10 @@
 //Collision detection : 
 20) Inorder to simulate the damages suffered in our car, we need to somehow find the coordinates of the border of our car. For this, we go to car.js and define a function called "createPolygon". It takes in an array of points [].
     One for each corner of the car. 
-    Inside the car's rectangle from the center point : we have a right triangle whose distance to the 4 corners from the center is just the hypotenuse of the right triangle.
+    Inside the car's rectangle from the center point : we have a right triangle whose distance to the 4 corners from the center is just the hypotenuse of the right triangle. (triangle  : from centre point -> any corner -> point horizontally parallel to center)
+
+21) So, our radius will be " Math.hypot(height,width)/2 "; Why /2 ? Bcos we need to stop at the center for our right traingle.
+    Our angle at the center point will be " const alpha  = atan2(width, height); " ; atan2 is arc-tan : It determine the value of an angle in a right triangle.
+    Notice how we didnt use (height,width)/2 here? Because angle will be the same regardless.
+
+22) 

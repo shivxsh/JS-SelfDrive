@@ -22,6 +22,7 @@ class Car{
     //On the detection of a key in controls.js, we need to move the car
     update(roadBorders) {
         this.#move();
+        this.polygon = this.#createPolygon();
         this.sensor.update(roadBorders);
     }
 
@@ -29,6 +30,24 @@ class Car{
     #createPolygon(){
         const points=[];
         const rad = Math.hypot(this.height,this.width)/2; //(inside the car's rectangle from the center point : we have a right triangle whose distance to the 4 corners from the center is just the hypotenuse of the right triangle.)
+        const alpha = Math.atan2(this.height,this,width);
+        points.push({
+           x: this.x - Math.sin(this.angle - alpha)*rad,
+           y: this.y - Math.cos(this.angle - alpha)*rad
+        });
+        points.push({
+            x: this.x - Math.sin(this.angle + alpha)*rad,
+            y: this.y - Math.cos(this.angle + alpha)*rad
+        });
+        points.push({
+            x: this.x - Math.sin(Math.PI + this.angle - alpha)*rad,
+            y: this.y - Math.cos(Math.PI + this.angle - alpha)*rad
+        });
+        points.push({
+            x: this.x - Math.sin(Math.PI + this.angle + alpha)*rad,
+            y: this.y - Math.cos(Math.PI + this.angle + alpha)*rad
+        });
+
     }
 
     #move(){
@@ -92,6 +111,16 @@ class Car{
     
     //draw() method gets a "context" as its parameter
     draw(ctx){
+
+        ctx.beginPath();
+        ctx.moveTo(this.polygon[0].x, this.polygon[0].y);
+        
+        for(let i=1; i<this.polygon.length; i++){
+            ctx.lineTo(this.polygon[i].x, this.polygon[i].y);
+        }
+
+        /*
+        //Block of code before creating polygon method : 
         
         //To rotate the car :
         ctx.save(); //save the context first
@@ -106,6 +135,8 @@ class Car{
             this.width,
             this.height
         );
+        */
+
         ctx.fill();
 
         ctx.restore();  //restore the context. Otherwise it will infinitely translate the x and y axis.
