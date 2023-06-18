@@ -8,7 +8,7 @@ class Car{
         this.speed=0;
         this.acceleration=0.5;
 // reverse - to stop the car
-        this.maxSpeed=3;
+        this.maxSpeed=8;
         this.friction=0.05;
 
 //angle - to move the car left and right in a particular angle
@@ -24,9 +24,11 @@ class Car{
 
     //On the detection of a key in controls.js, we need to move the car
     update(roadBorders) {
-        this.#move();
-        this.polygon = this.#createPolygon();
-        this.damaged = this.#assessDamage(roadBorders);
+        if(!this.damaged){
+            this.#move();
+            this.polygon = this.#createPolygon();
+            this.damaged = this.#assessDamage(roadBorders);
+        }
         this.sensor.update(roadBorders);
     }
 
@@ -52,6 +54,8 @@ class Car{
             x: this.x - Math.sin(this.angle + alpha)*rad,
             y: this.y - Math.cos(this.angle + alpha)*rad
         });
+
+        //These 2 corners are basically at the opposite side of the first two corners. Hence just add 180 deg (PI = 180 deg)
         points.push({
             x: this.x - Math.sin(Math.PI + this.angle - alpha)*rad,
             y: this.y - Math.cos(Math.PI + this.angle - alpha)*rad
@@ -78,7 +82,7 @@ class Car{
 
         //Speed for moving forward
         if(this.speed > this.maxSpeed){
-            this.speed = this.maxSpeed*2;
+            this.speed = this.maxSpeed;
         }
 
         //Speed for moving in reverse : hence '-' sign
@@ -124,6 +128,13 @@ class Car{
     
     //draw() method gets a "context" as its parameter
     draw(ctx){
+
+        if(this.damaged){
+            ctx.fillStyle = "grey";
+        }
+        else{
+            ctx.fillStyle = "black";
+        }
         ctx.beginPath();
         ctx.moveTo(this.polygon[0].x, this.polygon[0].y);
         

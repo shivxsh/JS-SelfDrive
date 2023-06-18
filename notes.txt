@@ -75,7 +75,7 @@
     the function returns 3 values : x,y and offset. where x is the lerp function of A and B's x coordinates and y is the lerp funciton of A and B's y coordinates. The offset is the distance between the car and the object.
 
 //Collision detection : 
-20) Inorder to simulate the damages suffered in our car, we need to somehow find the coordinates of the border of our car. For this, we go to car.js and define a function called "createPolygon". It takes in an array of points [].
+20) Inorder to simulate the damages suffered in our car, we need to somehow find the coordinates of the "border" of our car. For this, we go to car.js and define a function called "createPolygon". It takes in an array of points [].
     One for each corner of the car. 
     Inside the car's rectangle from the center point : we have a right triangle whose distance to the 4 corners from the center is just the hypotenuse of the right triangle. (triangle  : from centre point -> any corner -> point horizontally parallel to center)
 
@@ -83,4 +83,17 @@
     Our angle at the center point will be " const alpha  = atan2(width, height); " ; atan2 is arc-tan : It determine the value of an angle in a right triangle.
     Notice how we didnt use (height,width)/2 here? Because angle will be the same regardless.
 
-22) 
+22) We push the x and y coordinates of the 4 edges of the car into the points[] array. Note that the 3rd and 4th points are basically located 180 deg opposite to the frist 2 points. Hence just add 180 deg (Math.Pi) to it.
+
+23) With this, we can rewrite our " draw(ctx) " method by making a line to the array of points every time we move the car.
+
+24) Now to know if our car hits an object or not : 
+   -> Create a function called polyIntersect() in utils.js   
+   -> This will basically take up two parameters : The edges of the car & road Borders (for now, since we are yet to add traffic)
+   -> Inside the function we check if there is an intersection between the two polygons by calling the getIntersection method declared earlier.
+   -> It returns true if there is a intersection and false if there is not.
+
+25) Hence, if it is damaged : 
+   -> we dont allow it to move!  Under the update(roadBorders) methiod in car.js : we introduce a simple if statement i.e. (if (! this.damaged){ //allow all operations to be done } )
+
+//Adding Traffic : 
