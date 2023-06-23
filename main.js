@@ -6,10 +6,10 @@ canvas.width = 200;
 
 const ctx = canvas.getContext("2d"); //getting the context
 const road = new Road(canvas.width/2, canvas.width*0.9);
-const car = new Car(road.getLaneCenter(2),100,30,50);  // creating a new object called car from car.js
+const car = new Car(road.getLaneCenter(2),100,30,50,"KEYS");  // creating a new object called car from car.js
 //Array of cars : traffic
 const traffic = [
-    new Car(road.getLaneCenter(1), -100,30,50),
+    new Car(road.getLaneCenter(1), -100,30,50, "DUMMY",2),
 ];
 
 

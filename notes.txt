@@ -97,3 +97,16 @@
    -> we dont allow it to move!  Under the update(roadBorders) methiod in car.js : we introduce a simple if statement i.e. (if (! this.damaged){ //allow all operations to be done } )
 
 //Adding Traffic : 
+26) In main.js we simulate traffic by creating an array of car objects.
+    Next in out animate section, we go through each car in the traffic array and update our road.
+    And we also get the context and draw it as we go through each car in the array
+
+** Problem faced** : When in tested it by adding one car, our keyboard listeners will be over written. Hence we will no longer be able to control our car, but the newly added car.
+   TO resolve this : 
+    1) We distinguish between the two cars : "DUMMY" and "KEYS"
+    2) We add the keyboard listening functions to the "KEYS" and if the car is a "DUMMY" we just set " this.forward = true " 
+    3) How do we know a car is "KEYS" or "DUMMY" ? ==> We create a new field in the car constructor called "controlType" in which we pass the value "DUMMY" or "KEYS while creating an instance of the car object
+    4) To avoid the speeds of the two cars being different, we also add a " maxSpeed = 2 " inside the constructor to set the default speed of the dummy cars.
+
+    
+

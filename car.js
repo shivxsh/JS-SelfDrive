@@ -1,14 +1,14 @@
 class Car{
-    constructor(x,y,width,height){
+    constructor(x,y,width,height,controlType, maxSpeed=3){
         this.x=x; //x-axis
         this.y=y; // y-axis
         this.width=width; 
         this.height=height;
 // forward - to move the car front 
         this.speed=0;
-        this.acceleration=0.5;
+        this.acceleration=0.2;
 // reverse - to stop the car
-        this.maxSpeed=8;
+        this.maxSpeed=maxSpeed;
         this.friction=0.05;
 
 //angle - to move the car left and right in a particular angle
@@ -19,7 +19,7 @@ class Car{
 
         this.sensor = new Sensor(this);  //We pass the car object to this sensor constructor. Hence we use "this"
 
-        this.controls = new Controls();
+        this.controls = new Controls(controlType);
     }
 
     //On the detection of a key in controls.js, we need to move the car

@@ -1,13 +1,22 @@
 class Controls{
-    constructor(){
+    constructor(type){
         this.forward = false;
         this.left = false;
         this.right = false;
         this.reverse = false;
+        
+        switch(type){
+            case "KEYS":
+                this.#addKeyboardListeners();
+                break;
+            case "DUMMY":
+                this.forward = true;
+                break;
+        }
 
         //  " # " symbol refers to a PRIVATE method.
         // Hence, "addKeyboardListeners() cannot be accessed outside of the controls class"
-        this.#addKeyboardListeners();
+        // this.#addKeyboardListeners();
     }
 
 //If the up/down/left/right keys are pressed (read using onkeydown(event) method),
