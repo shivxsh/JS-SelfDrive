@@ -17,24 +17,33 @@ class Car{
 //for the polygon method :
         this.damaged = false;
 
-        this.sensor = new Sensor(this);  //We pass the car object to this sensor constructor. Hence we use "this"
+        if(controlType != "DUMMY"){
+            this.sensor = new Sensor(this);  //We pass the car object to this sensor constructor. Hence we use "this"
+        }
 
         this.controls = new Controls(controlType);
     }
 
     //On the detection of a key in controls.js, we need to move the car
-    update(roadBorders) {
+    update(roadBorders, traffic) {
         if(!this.damaged){
             this.#move();
             this.polygon = this.#createPolygon();
-            this.damaged = this.#assessDamage(roadBorders);
+            this.damaged = this.#assessDamage(roadBorders, traffic);
         }
-        this.sensor.update(roadBorders);
+        if(this.sensor){
+            this.sensor.update(roadBorders,traffic);
+        }
     }
 
-    #assessDamage(roadBorders){
+    #assessDamage(roadBorders,traffic){
         for(let i=0; i<roadBorders.length; i++){
             if(polysIntersect(this.polygon, roadBorders[i])){
+                return true;
+            }
+        }
+        for(let i=0; i<traffic.length; i++){
+            if(polysIntersect(this.polygon, traffic[i].polygon)){
                 return true;
             }
         }
@@ -144,7 +153,9 @@ class Car{
 
         ctx.fill();
 
-        this.sensor.draw(ctx); //The car now has the ability to draw its own sensors.
+        if(this.sensor){
+            this.sensor.draw(ctx); //The car now has the ability to draw its own sensors.
+        }
 
         /*
         //Block of code before creating polygon method : 

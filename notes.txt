@@ -107,6 +107,9 @@
     2) We add the keyboard listening functions to the "KEYS" and if the car is a "DUMMY" we just set " this.forward = true " 
     3) How do we know a car is "KEYS" or "DUMMY" ? ==> We create a new field in the car constructor called "controlType" in which we pass the value "DUMMY" or "KEYS while creating an instance of the car object
     4) To avoid the speeds of the two cars being different, we also add a " maxSpeed = 2 " inside the constructor to set the default speed of the dummy cars.
+    5) To avoid the sensor lines being projected from the other car we add a condition inside update(roadBorders) to only update the sensor if the car is a DUMMY.
 
-    
+Next we need to interact with the traffic. When our car hits the car from traffic array, we need to make our car damage and stop. Hene we use the assessDamage function that is inside the car.js file and just as it updates 
+with the road borders we make it updated with the traffic cars inside the array.
 
+Next we need to update the sensors to detect the cars. Just like how it detects road borders we make it detect the cars infront using getIntersection function.
