@@ -136,13 +136,13 @@ class Car{
     }
     
     //draw() method gets a "context" as its parameter
-    draw(ctx){
+    draw(ctx,color){
 
         if(this.damaged){
             ctx.fillStyle = "grey";
         }
         else{
-            ctx.fillStyle = "black";
+            ctx.fillStyle = color;
         }
         ctx.beginPath();
         ctx.moveTo(this.polygon[0].x, this.polygon[0].y);
