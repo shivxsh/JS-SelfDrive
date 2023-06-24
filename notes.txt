@@ -112,4 +112,21 @@
 Next we need to interact with the traffic. When our car hits the car from traffic array, we need to make our car damage and stop. Hene we use the assessDamage function that is inside the car.js file and just as it updates 
 with the road borders we make it updated with the traffic cars inside the array.
 
-Next we need to update the sensors to detect the cars. Just like how it detects road borders we make it detect the cars infront using getIntersection function.
+Next we need to update the sensors to detect the cars.
+Just like how it detects road borders we make it detect the cars infront using getIntersection function.
+
+//Adding Neural Networks : 
+1) Imagine NN like levels. Each level has a floor, a ceiling and lot of connections between the floor and ceiling. The ceiling of level 1 is the floor of level 2 adn so on.
+
+2) So, we define a level class : 
+    -> input Node counts
+    -> output Node counts
+    -> biases
+    -> weights
+
+3) Initally we set the weights and biases as random for every node.
+
+4) We compute the output using a feedForward algorithm
+
+5) 
+
