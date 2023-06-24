@@ -142,6 +142,12 @@ Just like how it detects road borders we make it detect the cars infront using g
 6) Now that we have implemented our Level class, we basically create another class called "Neural Network" for adding more levels.
    -> This is done by creating an empty array of levels in which we push a new Level object with 2 parameters : input neuron counts and output neuron counts.
    -> And we use a feed forward method which returns the output for those levels.
-   
-      
 
+7) Integrating the NN function with our code :
+    -> Inside car.js we create object of Neural Network which takes in rayCount, Hidden Layers, and output layers (4 : up, down, left, right) as inputs.
+    -> Next we need to tell our car that an object is far away or its close by : 
+        Which we do by updating the sensor offset values to low values if an object is far by and high value when object is close
+
+8) Next make our car run by itself : 
+    -> We set this.useBrain inside our car constructor to the brian variable that stores the NN object.
+    -> 
