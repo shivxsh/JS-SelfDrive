@@ -152,4 +152,5 @@ Just like how it detects road borders we make it detect the cars infront using g
     -> We set this.useBrain inside our car constructor to the brian variable that stores the NN object.
     -> The sensors are updated such that based on the output values returned by the NN, it uses the controls.js 's forward/reverse/left/right functionality 
        and moves in a random direction.
-    -> 
+
+9) Now time for Parallelization or Generating More cars that do random things as accordingly by the random assignment of weights 
