@@ -1,2 +1,1 @@
-# Self Driving Car in JS without any libraries
-# Using Neural Networks
+# Self Driving Car in JS using Neural Networks
