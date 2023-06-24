@@ -126,7 +126,22 @@ Just like how it detects road borders we make it detect the cars infront using g
 
 3) Initally we set the weights and biases as random for every node.
 
-4) We compute the output using a feedForward algorithm
+4) We compute the output using a feedForward algorithm :
+   A feedForward NN is an " artificial neural network ". All information is only passed forward. 
+   During data flow, input nodes receive data, which travel through hidden layers, and exit output nodes. 
 
-5) 
+5) So NN basic calculations are performed here as well : 
+   -> The inputs are what we get from the sensors, i.e. do they touch/ detect something or not
+   -> The calculation will be input * weight at that node.
+   -> The sum of all the (input * weight) will give the value of the outputs.
+        -> But, if the sum is < than bias we set output neuron to 1 (ON)
+        -> else, if sum > bias, we set output neueon to 0. (OFF)
+
+   -> Implement the feedForward function that will 
+
+6) Now that we have implemented our Level class, we basically create another class called "Neural Network" for adding more levels.
+   -> This is done by creating an empty array of levels in which we push a new Level object with 2 parameters : input neuron counts and output neuron counts.
+   -> And we use a feed forward method which returns the output for those levels.
+   
+      
 
