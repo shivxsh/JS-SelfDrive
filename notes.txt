@@ -172,4 +172,8 @@ Just like how it detects road borders we make it detect the cars infront using g
         -> JSON.stringify method converts any object or acceptable value into a string JSON
     
 12) Now add more cars inside the traffic array to simulate traffic.
-    
+
+13) Mutate function : 
+
+
+14) 
