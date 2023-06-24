@@ -45,12 +45,16 @@ function animate(){
         cars[i].update(road.borders, traffic);
     }
 
+    const bestCar = cars.find(
+        c=> c.y== Math.min(...cars.map(c=>c.y))
+    );
+
     carCanvas.height=window.innerHeight;
     networkCanvas.height=window.innerHeight;
     
     carCtx.save();
 //To have a camera view pinned on the car such that it feels like the road is infinitely moving
-    carCtx.translate(0,-cars[0].y + carCanvas.height*0.8);
+    carCtx.translate(0,-bestCar.y + carCanvas.height*0.8);
 
 
     road.draw(carCtx);
@@ -58,14 +62,17 @@ function animate(){
         traffic[i].draw(carCtx,"red");
     }
 
+    carCtx.globalAlpha = 0.2;
     for(let i=0; i<cars.length; i++){
         cars[i].draw(carCtx, "blue");
     }
+    carCtx.globalAlpha = 1;
+    bestCar.draw(carCtx, "blue", true);
 
     carCtx.restore();
 
     
-    Visualizer.drawNetwork(networkCtx, cars[0].brain);
+    Visualizer.drawNetwork(networkCtx,bestCar.brain);
     
 
 //requestAnimationFrame calls the "animate()" method many times per second.

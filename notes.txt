@@ -153,4 +153,11 @@ Just like how it detects road borders we make it detect the cars infront using g
     -> The sensors are updated such that based on the output values returned by the NN, it uses the controls.js 's forward/reverse/left/right functionality 
        and moves in a random direction.
 
-9) Now time for Parallelization or Generating More cars that do random things as accordingly by the random assignment of weights 
+9) Now time for Parallelization or Generating More cars that do random things as accordingly by the random assignment of weights.
+    This is done by pusing car objects into a cars array for N times. Thus resulting in a lot of cars driving random directions based on the NN.
+
+10) But, we want to focus on the "BEST" car.... i.e. the one that goes up the most. Inorder to do that :
+    -> The best car that goes the farthest upwards is the car with the "Minimum y value". Since, in a computer the y axis increases downwards.
+    -> To find the min y value, we basically have an array of all y values of the new generated cars and only search for the minimum values using the "Spread ... Operator"
+    -> Thus, by using the find() method which eturns the value of the first element that passes a test, we set the bestCar to be the one with minimum y value and it will be focussed as it's object will only be highlighted in a different color.
+
