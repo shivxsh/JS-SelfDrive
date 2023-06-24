@@ -1,11 +1,14 @@
-const canvas = document.getElementById("myCanvas");
-canvas.width = 200;
+const carCanvas = document.getElementById("carCanvas");
+carCanvas.width = 200;
+const networkCanvas = document.getElementById("networkCanvas");
+networkCanvas.width = 300;
 
 
 //First step in building a car is to get the context
 
-const ctx = canvas.getContext("2d"); //getting the context
-const road = new Road(canvas.width/2, canvas.width*0.9);
+const carCtx = carCanvas.getContext("2d"); //getting the context
+const networkCtx = networkCanvas.getContext("2d");
+const road = new Road(carCanvas.width/2, carCanvas.width*0.9);
 const car = new Car(road.getLaneCenter(2),100,30,50,"AI");  // creating a new object called car from car.js
 //Array of cars : traffic
 const traffic = [
@@ -19,23 +22,32 @@ animate();
 
 function animate(){
 
+    function generateCars(N){
+        
+    }
+
     for(let i=0; i<traffic.length; i++){
         traffic[i].update(road.borders,[]);  //Empty array so the traffic cars wont interact with itself and get damaged.
     }
     car.update(road.borders, traffic);
 
-    canvas.height=window.innerHeight;
+    carCanvas.height=window.innerHeight;
+    networkCanvas.height=window.innerHeight;
     
-    ctx.save();
+    carCtx.save();
 //To have a camera view pinned on the car such that it feels like the road is infinitely moving
-    ctx.translate(0,-car.y + canvas.height*0.8);
-    road.draw(ctx);
+    carCtx.translate(0,-car.y + carCanvas.height*0.8);
+    road.draw(carCtx);
     for(let i=0; i<traffic.length; i++){
-        traffic[i].draw(ctx,"red");
+        traffic[i].draw(carCtx,"red");
     }
-    car.draw(ctx, "blue");
-    ctx.restore();
+    car.draw(carCtx, "blue");
 
+    carCtx.restore();
+
+    
+    Visualizer.drawNetwork(networkCtx, car.brain);
+    
 
 //requestAnimationFrame calls the "animate()" method many times per second.
 //This gives the illusion of movement.
